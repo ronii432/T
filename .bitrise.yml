@@ -11,7 +11,7 @@ workflows:
           inputs:
             android_sdk_versions: "29"  # Jo SDK version aapko chahiye, usse specify karein
             android_build_tools_version: "30.0.3"  # Build tools version
-            gradlew_path: "gradlew"  # Gradle wrapper file ka path agar root mein hai
+            gradlew_path: "T/gradlew"  # Gradle wrapper file ka path agar root mein hai
 
       # GitHub repository clone aur dependencies install karne ka step
       - script:
