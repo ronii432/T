@@ -6,6 +6,11 @@ workflows:
   version: 2
   main:
     steps:
+      - android-sdk-installer@2:
+          inputs:
+            android_sdk_versions: "29"  # Specify the SDK version you need
+            android_build_tools_version: "30.0.3"  # Specify the Build Tools version
+
       - script:
           title: "Clone GitHub Repository & Build"
           inputs:
