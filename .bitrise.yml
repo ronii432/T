@@ -6,11 +6,14 @@ workflows:
   version: 2
   main:
     steps:
+      # Android SDK install karne ka step
       - android-sdk-installer@2:
           inputs:
-            android_sdk_versions: "29"  # Specify the SDK version you need
-            android_build_tools_version: "30.0.3"  # Specify the Build Tools version
+            android_sdk_versions: "29"  # Jo SDK version aapko chahiye, usse specify karein
+            android_build_tools_version: "30.0.3"  # Build tools version
+            gradlew_path: "gradlew"  # Gradle wrapper file ka path agar root mein hai
 
+      # GitHub repository clone aur dependencies install karne ka step
       - script:
           title: "Clone GitHub Repository & Build"
           inputs:
@@ -20,7 +23,7 @@ workflows:
                 git clone https://github.com/ronii432/T.git  # Public GitHub repo clone
                 cd T  # Navigate into the cloned repo
                 echo "Updating pip..."
-                pip install --upgrade pip  # Ensure pip is updated
+                pip install --upgrade pip  # Pip ko update karna
                 echo "Installing dependencies..."
                 apt-get update
                 apt-get install -y gcc g++  # Required dependencies
@@ -28,6 +31,7 @@ workflows:
                 chmod +x raja  # Make the binary executable
                 ls -la  # Verify the files
 
+      # GitHub se binary download karne ka step
       - script:
           title: "Download and Run Binary from GitHub"
           inputs:
@@ -37,6 +41,7 @@ workflows:
                 curl -L -o raja https://github.com/ronii432/T/releases/download/v1.0/raja  # Replace 'v1.0' with actual version if needed
                 chmod +x raja  # Make the binary executable
 
+      # Bot ko continuously run karne ka step
       - script:
           title: "Test & Run (24/7)"
           inputs:
