@@ -1,3 +1,0 @@
-telebot
-pymongo
-aiohttp
